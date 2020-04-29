@@ -21,7 +21,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     title: "СПИСОК КОМАНД",
-                    description: "`m!help` - список команд **(вы здесь)**\n`m!hello` - передать привет боту\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!say <text>` - отправить текст от имени бота\n\n**Список будет дополняться по мере появления новых команд.**",
+                    description: "`m!help` - список команд **(вы здесь)**\n`m!hello` - передать привет боту\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
                         name: "m1t3nk0v.b0t",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
@@ -54,6 +54,24 @@ client.on("messageCreate", message => {
             }
             else {
             client.createMessage(message.channel.id, `котлетки`);
+            }
+            break;
+
+        case "reverse":
+            if (args.length === 0) {
+                client.createMessage(message.channel.id, `***(яиначлом икувз)***`);
+            }
+            if (message.author.id === "425356730483081227") {
+                client.createMessage(message.channel.id, `${message.author.mention} ьше алоп с уде ёще ,еонреван ,имакчобокс ясьшеавыркирп ,охолп ьшитуш ,упож в иди`);
+            }
+            else {
+                const text = args.join(" ");
+                const reverse = text.split("").reverse().join("")
+                client.createMessage(message.channel.id, `${reverse}`);
+                if (message.content === `m!reverse ${text}`) {
+                    message.delete();
+                    console.log(`${message.author.username} сказал: ${reverse} (расшифровка: ${text})`);
+                }
             }
             break;
 
