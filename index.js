@@ -6,7 +6,7 @@ client.on("ready", () => {
     console.log("Есть пробитие!");
     client.editStatus("online", {
         name: "m1t3nk0v.club | m!help",
-        type: 3
+        type: 2
     })
 })
 
