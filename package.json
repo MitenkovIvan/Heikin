@@ -1,12 +1,13 @@
 {
   "name": "m1t3nk0v.b0t",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just your average Node.js/Eris Discord bot.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  "author": "",
+  "author": "m1t3nk0v",
   "license": "ISC",
   "dependencies": {
     "eris": "^0.12.0"
