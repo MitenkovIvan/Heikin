@@ -63,7 +63,7 @@ client.on("messageCreate", message => {
                     },
                     color: 7237340,
                     footer: {
-                        text: "© 2020 m1t3nk0v | Created with Eris.",
+                        text: "© 2020 m1t3nk0v",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
                     },
 					fields: [
