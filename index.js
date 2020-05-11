@@ -1,5 +1,5 @@
 const Eris = require("eris");
-const client = new Eris(require("./config.json").token);
+const client = new Eris(process.env.token);
 const prefix = "m!";
 
 
