@@ -79,6 +79,23 @@ client.on("messageCreate", message => {
             })};
             break;
             
+        case "eval":
+            if (message.author.id !== process.env.ownerID) {
+                client.createMessage(message.channel.id, `${message.author.mention} тебе сюда нельзя`);
+            }
+            else {
+                try {
+                    const code = args.join(" ");
+                    const proc = eval(code);
+                    const result = `\`\`\`js\n${proc}\n\`\`\``;
+                    client.createMessage(message.channel.id, `${result}`);
+                    return result;
+                } catch (err) {
+                    client.createMessage(message.channel.id, `${err}`);
+                }
+            }
+            break;
+
         case "hello":
             client.createMessage(message.channel.id, `:wave: Привет, ${message.author.mention}!`);
             break;
