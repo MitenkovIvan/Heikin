@@ -1,8 +1,10 @@
 const Eris = require("eris");
+const moment = require("moment");
 const client = new Eris(process.env.token);
 const prefix = "m!";
 
 client.on("ready", () => {
+    moment.locale('ru');
     console.log("Есть пробитие!");
     client.editStatus("online", {
         name: "m1t3nk0v.club | m!help",
