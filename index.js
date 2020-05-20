@@ -70,11 +70,11 @@ client.on("messageCreate", message => {
                     },
                     fields: [
                     {
-                        name: "Вопрос:",
+                        name: `**Вопрос:**`,
                         value: `${question}`,
                     },
                     {
-                        name: "Ответ:",
+                        name: `**Ответ:**`,
                         value: `${answer}`,
                     }]
                 }
@@ -82,7 +82,7 @@ client.on("messageCreate", message => {
             break;
             
         case "eval":
-            if (message.author.id !== process.env.ownerID) {
+            if (message.author.id !== "274551672301158402") {
                 client.createMessage(message.channel.id, `${message.author.mention} тебе сюда нельзя`);
             }
             else {
@@ -106,15 +106,66 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     title: "СПИСОК КОМАНД",
-                    description: "`m!8ball <question>` - задать вопрос боту\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n\n**Список будет дополняться по мере появления новых команд.**",
+                    description: "`m!8ball <question>` - задать вопрос боту\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
                         name: "m1t3nk0v.b0t",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
                     },
                     color: 7237340,
                     footer: {
-                        text: "© 2020 m1t3nk0v | Created with Eris.",
+                        text: "© 2020 m1t3nk0v",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    }
+                }
+            });
+            break;
+
+        case "info":
+            const version = require("./package.json").version;
+            const os = require("os");
+            client.createMessage(message.channel.id, {
+                embed: {
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    color: 7237340,
+                    fields: [
+                        {
+                          name: `**ID:**`,
+                          value: client.user.id
+                        },
+                        {
+                          name: `**Аптайм:**`,
+                          value: `${moment(client.uptime).format('LTS')}`
+                        },
+                        {
+                          name: `**Операционная система:**`,
+                          value: `${os.type()} ${os.release()} (${os.arch()})`
+                        },
+                        {
+                          name: `**Дата создания:**`,
+                          value: `${moment(client.user.createdAt).format('ll')}, ${moment(client.user.createdAt).format('LTS')}`
+                        },
+                        {
+                          name: `**Количество серверов:**`,
+                          value: client.guilds.size
+                        },
+                        {
+                          name: `**Количество участников:**`,
+                          value: client.users.size
+                        },
+                        {
+                          name: `**Используемые библиотеки:**`,
+                          value: `**Node.js** ${process.version}\n**Eris** ${require("eris").VERSION}\n**Moment** ${moment.version}`
+                        }
+                    ],
+                    footer: {
+                        text: "© 2020 m1t3nk0v",
+                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    },
+                    thumbnail: {
+                        url: client.user.avatarURL
                     }
                 }
             });
@@ -293,11 +344,11 @@ client.on("messageCreate", message => {
                     },
                     fields: [
                     {
-                        name: "Предмет на оценку:",
+                        name: `**Предмет на оценку:**`,
                         value: `${subject}`,
                     },
                     {
-                        name: "Оценка:",
+                        name: `**Оценка:**`,
                         value: `${rate}`,
                     }]
                 }
@@ -317,7 +368,7 @@ client.on("messageCreate", message => {
                 client.createMessage(message.channel.id, `${reverse}`);
                 if (message.content === `m!reverse ${text}`) {
                     message.delete();
-                    console.log(`${message.author.username} сказал: ${reverse} (расшифровка: ${text})`);
+                    console.log(`${message.author.username}#${message.member.discriminator} сказал: ${reverse} (расшифровка: ${text})`);
                 }
             }
             break;
@@ -334,9 +385,103 @@ client.on("messageCreate", message => {
                 client.createMessage(message.channel.id, `${text}`);
                 if (message.content === `m!say ${text}`) {
                     message.delete();
-                    console.log(`${message.author.username} сказал: ${text}`);
+                    console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text}`);
                 }
             }
+            break;
+
+        case "server":
+            const owner = message.channel.guild.members.get(message.channel.guild.ownerID);
+            client.createMessage(message.channel.id, {
+                embed: {
+                    author: {
+                        name: message.channel.guild.name,
+                        icon_url: message.channel.guild.iconURL
+                    },
+                    color: 7237340,
+                    fields: [
+                        {
+                          name: `**ID:**`,
+                          value: message.channel.guild.id
+                        },
+                        {
+                          name: `**Владелец сервера:**`,
+                          value: `${owner.user.username}#${owner.user.discriminator} (${owner.mention})`
+                        },
+                        {
+                          name: `**Регион сервера:**`,
+                          value: message.channel.guild.region
+                        },
+                        {
+                          name: `**Дата создания:**`,
+                          value: `${moment(message.channel.guild.createdAt).format('ll')}, ${moment(message.channel.guild.createdAt).format('LTS')}`
+                        },
+                        {
+                          name: `**Количество участников:**`,
+                          value: message.channel.guild.memberCount
+                        },
+                        {
+                          name: `**Количество каналов:**`,
+                          value: message.channel.guild.channels.size
+                        }
+                    ],
+                    footer: {
+                        text: "© 2020 m1t3nk0v",
+                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    },
+                    thumbnail: {
+                        url: message.channel.guild.iconURL
+                    }
+                }
+            });
+            break;
+
+        case "user":
+            const getUser = message.mentions.length >= 1 ? message.mentions[0] : (args.length !== 0 ? client.users.get(args[0]) : message.author);
+            const user = getUser !== undefined ? getUser : (message.author);
+            const member = message.channel.guild.members.get(user.id);
+            client.createMessage(message.channel.id, {
+                embed: {
+                    author: {
+                        name: `${member.username}#${member.discriminator}`,
+                        icon_url: member.avatarURL
+                    },
+                    color: 7237340,
+                    fields: [
+                        {
+                          name: `**ID:**`,
+                          value: member.id
+                        },
+                        {
+                          name: `**Никнейм:**`,
+                          value: member ? (member.nick ? member.nick : "N/A") : "N/A"
+                        },
+                        {
+                          name: `**Статус:**`,
+                          value: member.status
+                        },
+                        {
+                          name: `**Бот?**`,
+                          value: member.bot ? "Да" : "Нет"
+                        },
+                        {
+                          name: `**Дата регистрации в Discord:**`,
+                          value: `${moment(member.createdAt).format('ll')}, ${moment(member.createdAt).format('LTS')}`
+                        },
+                        {
+                          name: `**Дата присоединения к серверу:**`,
+                          value: `${moment(member.joinedAt).format('ll')}, ${moment(member.joinedAt).format('LTS')}`
+                        }
+                    ],
+                    footer: {
+                        text: "© 2020 m1t3nk0v",
+                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    },
+                    thumbnail: {
+                        url: member.avatarURL
+                    }
+                }
+            });
             break;
 
         default:
