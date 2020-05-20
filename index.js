@@ -1,5 +1,4 @@
 const Eris = require("eris");
-const moment = require("moment");
 const client = new Eris(process.env.token);
 const prefix = "m!";
 
