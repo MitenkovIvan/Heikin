@@ -133,7 +133,17 @@ client.on("messageCreate", message => {
                 client.createMessage(message.channel.id, `${message.author.mention} сасай, никаких тебе котлеток)`);
             }
             else {
-            client.createMessage(message.channel.id, `котлетки`);
+            client.createMessage(message.channel.id, {
+                "content": "котлетки",
+                "embed": {
+                  "description": `:ping_pong: **Пинг:** ${message.channel.guild.shard.latency} мс`,
+                  "color": 7237340,
+                  "footer": {
+                    "icon_url": "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png",
+                    "text": "© 2020 m1t3nk0v"
+                  }
+                }
+              });
             }
             break;
 
