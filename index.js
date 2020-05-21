@@ -7,8 +7,8 @@ client.on("ready", () => {
     moment.locale('ru');
     console.log("Есть пробитие!");
     client.editStatus("online", {
-        name: "m1t3nk0v.club | m!help",
-        type: 2
+        name: "Visual Studio Code | m!help",
+        type: 0
     })
 })
 
@@ -16,6 +16,13 @@ client.on("messageCreate", message => {
     if (!message.content.startsWith(prefix) || message.author.client) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
+    const getUser = message.mentions.length >= 1 ? message.mentions[0] : (args.length !== 0 ? client.users.get(args[0]) : message.author);
+    const user = getUser !== undefined ? getUser : (message.author);
+    const member = message.channel.guild.members.get(user.id);
+
+    if (message.content === `<@705062587389313054>` || args.length === 0) {
+        client.createMessage(message.channel.id, `${message.author.mention} мужик, ты чего? открыл рот и молчит...`);
+    }
     
     switch (command) {
         case "8ball":
@@ -80,6 +87,26 @@ client.on("messageCreate", message => {
                 }
             })};
             break;
+
+        case "avatar":
+            client.createMessage(message.channel.id, {
+                embed: {
+                    description: `Аватарка **${member.username}#${member.discriminator}**:`,
+                    author: {
+                        name: "m1t3nk0v.b0t",
+                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    },
+                    color: 7237340,
+                    footer: {
+                        text: "© 2020 m1t3nk0v",
+                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                    },
+                    image: {
+                        url: member.avatarURL
+                    }
+                }
+            });
+            break;
             
         case "eval":
             if (message.author.id !== "274551672301158402") {
@@ -106,7 +133,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     title: "СПИСОК КОМАНД",
-                    description: "`m!8ball <question>` - задать вопрос боту\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n\n**Список будет дополняться по мере появления новых команд.**",
+                    description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
                         name: "m1t3nk0v.b0t",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
@@ -437,9 +464,6 @@ client.on("messageCreate", message => {
             break;
 
         case "user":
-            const getUser = message.mentions.length >= 1 ? message.mentions[0] : (args.length !== 0 ? client.users.get(args[0]) : message.author);
-            const user = getUser !== undefined ? getUser : (message.author);
-            const member = message.channel.guild.members.get(user.id);
             client.createMessage(message.channel.id, {
                 embed: {
                     author: {
