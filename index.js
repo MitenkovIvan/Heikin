@@ -63,7 +63,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     author: {
-                        name: `${message.author.username}`,
+                        name: `${message.author.username}#${message.author.discriminator}`,
                         icon_url: `${message.author.avatarURL}`
                     },
                     color: 7237340,
@@ -357,7 +357,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     author: {
-                        name: `${message.author.username}`,
+                        name: `${message.author.username}#${message.author.discriminator}`,
                         icon_url: `${message.author.avatarURL}`
                     },
                     color: 7237340,
