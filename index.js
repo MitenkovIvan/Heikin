@@ -20,10 +20,6 @@ client.on("messageCreate", message => {
     const user = getUser !== undefined ? getUser : (message.author);
     const member = message.channel.guild.members.get(user.id);
 
-    if (message.content === `<@705062587389313054>` || args.length === 0) {
-        client.createMessage(message.channel.id, `${message.author.mention} мужик, ты чего? открыл рот и молчит...`);
-    }
-    
     switch (command) {
         case "8ball":
             const question = args.join(" ");
