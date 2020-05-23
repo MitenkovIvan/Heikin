@@ -397,11 +397,8 @@ client.on("messageCreate", message => {
             break;
 
         case "say":
-            if (args.length === 0) {
+            if (message.author.id !== "274551672301158402") {
                 client.createMessage(message.channel.id, `***(звуки молчания)***`);
-            }
-            if (message.author.id === "425356730483081227") {
-                client.createMessage(message.channel.id, `${message.author.mention} иди в жопу, шутишь плохо, прикрываешься скобочками, наверное, ещё еду с пола ешь`);
             }
             else {
                 const text = args.join(" ");
