@@ -195,7 +195,7 @@ client.on("messageCreate", message => {
             break;
 
         case "invite":
-            if (message.author.id === "425356730483081227") {
+            if (message.author.id === "635445518553710593") {
                 client.createMessage(message.channel.id, `${message.author.mention} а жопа не слипнется?)`);
             }
             else {
@@ -204,7 +204,7 @@ client.on("messageCreate", message => {
             break;
 
         case "kotletki":
-            if (message.author.id === "425356730483081227") {
+            if (message.author.id === "635445518553710593") {
                 client.createMessage(message.channel.id, `${message.author.mention} сасай, никаких тебе котлеток)`);
             }
             else {
@@ -382,7 +382,7 @@ client.on("messageCreate", message => {
             if (args.length === 0) {
                 client.createMessage(message.channel.id, `***(яиначлом икувз)***`);
             }
-            if (message.author.id === "425356730483081227") {
+            if (message.author.id === "635445518553710593") {
                 client.createMessage(message.channel.id, `${message.author.mention} ьше алоп с уде ёще ,еонреван ,имакчобокс ясьшеавыркирп ,охолп ьшитуш ,упож в иди`);
             }
             else {
@@ -397,8 +397,11 @@ client.on("messageCreate", message => {
             break;
 
         case "say":
-            if (message.author.id !== "274551672301158402") {
+            if (args.length === 0) {
                 client.createMessage(message.channel.id, `***(звуки молчания)***`);
+            }
+            if (message.author.id === "635445518553710593") {
+                client.createMessage(message.channel.id, `${message.author.mention} иди в жопу, шутишь плохо, прикрываешься скобочками, наверное, ещё еду с пола ешь`);
             }
             else {
                 const text = args.join(" ");
