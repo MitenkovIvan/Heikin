@@ -17,6 +17,7 @@ client.on("ready", () => {
 
 client.on("messageCreate", message => {
     if (!message.content.startsWith(prefix) || message.author.client) return;
+    if (!message.channel.guild) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const getUser = message.mentions.length >= 1 ? message.mentions[0] : (args.length !== 0 ? client.users.get(args[0]) : message.author);
