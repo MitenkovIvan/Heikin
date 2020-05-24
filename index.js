@@ -1,6 +1,9 @@
 const Eris = require("eris");
 const moment = require("moment");
 const client = new Eris(process.env.token);
+const version = require("./package.json").version;
+const currentYear = moment().format('YYYY')
+const os = require("os");
 const prefix = "m!";
 
 client.on("ready", () => {
@@ -19,6 +22,7 @@ client.on("messageCreate", message => {
     const getUser = message.mentions.length >= 1 ? message.mentions[0] : (args.length !== 0 ? client.users.get(args[0]) : message.author);
     const user = getUser !== undefined ? getUser : (message.author);
     const member = message.channel.guild.members.get(user.id);
+    const randomMemberID = message.channel.guild.members.random().user.id;
 
     switch (command) {
         case "8ball":
@@ -129,7 +133,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     title: "СПИСОК КОМАНД",
-                    description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n\n**Список будет дополняться по мере появления новых команд.**",
+                    description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n`m!who <subject>` - система поиска человека\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
                         name: "m1t3nk0v.b0t",
                         icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
@@ -144,8 +148,6 @@ client.on("messageCreate", message => {
             break;
 
         case "info":
-            const version = require("./package.json").version;
-            const os = require("os");
             client.createMessage(message.channel.id, {
                 embed: {
                     author: {
@@ -503,6 +505,61 @@ client.on("messageCreate", message => {
                 }
             });
             break;
+
+        case "who":
+            const subject2 = args.join(" ");
+            const response2 = [
+                `<@${randomMemberID}>`,
+                `Я думаю, что это <@${randomMemberID}>.`,
+                `Я считаю, что это <@${randomMemberID}>.`,
+                `Кажется, это <@${randomMemberID}>.`,
+                `Кажется, <@${randomMemberID}> ${subject2}.`,
+                `Всё ясно, это <@${randomMemberID}>.`,
+                `Всё ясно, <@${randomMemberID}> ${subject2}.`,
+                `Мои вычисления показывают, что это <@${randomMemberID}>.`,
+                `Мой IQ подсказывает мне, что это <@${randomMemberID}>.`,
+                `Говорит Москва: «это <@${randomMemberID}>»!`,
+                `Говорит Москва: «<@${randomMemberID}> ${subject2}»!`,
+                `<@${randomMemberID}>, сука! Привет от ${message.author.mention}!`,
+                `Это <@${randomMemberID}>, инфа 100%!`,
+                `<@${randomMemberID}> ${subject2}, инфа 100%!`,
+                `Это <@${randomMemberID}>, отвечаю!`,
+                `<@${randomMemberID}> ${subject2}, отвечаю!`,
+                `Это <@${randomMemberID}>, базарю!`,
+                `<@${randomMemberID}> ${subject2}, базарю!`,
+                `<@${randomMemberID}>, вас заметили!`,
+                `<@${randomMemberID}>, приём!`,
+                `<@${randomMemberID}>, ты ли это?`,
+                `<@${randomMemberID}>, а мы тебя нашли)0)`
+            ];
+            const randomResponse = response2[Math.floor(Math.random()*response2.length)];
+            if (args.length === 0) {
+                client.createMessage(message.channel.id, `***(звуки молчания)***`);
+            }
+            else {
+                client.createMessage(message.channel.id, {
+                    embed: {
+                        author: {
+                            name: `${message.author.username}#${message.author.discriminator}`,
+                            icon_url: `${message.author.avatarURL}`
+                        },
+                        color: 7237340,
+                        footer: {
+                            text: "© 2020 m1t3nk0v",
+                            icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                        },
+                        fields: [
+                        {
+                            name: `**Вопрос:**`,
+                            value: `Кто ${subject2}?`,
+                        },
+                        {
+                            name: `**Ответ:**`,
+                            value: `${randomResponse}`,
+                        }]
+                    }
+                })};
+                break;
 
         default:
             break;
