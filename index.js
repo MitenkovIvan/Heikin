@@ -2,7 +2,7 @@ const Eris = require("eris");
 const moment = require("moment");
 const client = new Eris(process.env.token);
 const version = require("./package.json").version;
-const currentYear = moment().format('YYYY')
+const currentYear = moment().format('YYYY');
 const os = require("os");
 const prefix = "m!";
 
@@ -94,8 +94,8 @@ client.on("messageCreate", message => {
                 embed: {
                     description: `Аватарка **${member.username}#${member.discriminator}**:`,
                     author: {
-                        name: "m1t3nk0v.b0t",
-                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
                     },
                     color: 7237340,
                     footer: {
@@ -136,8 +136,8 @@ client.on("messageCreate", message => {
                     title: "СПИСОК КОМАНД",
                     description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n`m!who <subject>` - система поиска человека\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
-                        name: "m1t3nk0v.b0t",
-                        icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
                     },
                     color: 7237340,
                     footer: {
@@ -182,7 +182,7 @@ client.on("messageCreate", message => {
                           value: client.users.size
                         },
                         {
-                          name: `**Используемые библиотеки:**`,
+                          name: `**Используемые пакеты:**`,
                           value: `**Node.js** ${process.version}\n**Eris** ${require("eris").VERSION}\n**Moment** ${moment.version}`
                         }
                     ],
