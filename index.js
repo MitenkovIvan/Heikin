@@ -385,9 +385,6 @@ client.on("messageCreate", message => {
             if (args.length === 0) {
                 client.createMessage(message.channel.id, `***(яиначлом икувз)***`);
             }
-            if (message.author.id === "425356730483081227") {
-                client.createMessage(message.channel.id, `${message.author.mention} ьше алоп с уде ёще ,еонреван ,имакчобокс ясьшеавыркирп ,охолп ьшитуш ,упож в иди`);
-            }
             else {
                 const text = args.join(" ");
                 const reverse = text.split("").reverse().join("")
