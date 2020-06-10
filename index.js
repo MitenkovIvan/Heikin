@@ -385,17 +385,33 @@ client.on("messageCreate", message => {
             if (args.length === 0) {
                 client.createMessage(message.channel.id, `***(яиначлом икувз)***`);
             }
-            if (message.author.id === "635445518553710593") {
+            if (message.author.id === "425356730483081227") {
                 client.createMessage(message.channel.id, `${message.author.mention} ьше алоп с уде ёще ,еонреван ,имакчобокс ясьшеавыркирп ,охолп ьшитуш ,упож в иди`);
             }
             else {
                 const text = args.join(" ");
                 const reverse = text.split("").reverse().join("")
-                client.createMessage(message.channel.id, `${reverse}`);
-                if (message.content === `m!reverse ${text}`) {
-                    message.delete();
-                    console.log(`${message.author.username}#${message.member.discriminator} сказал: ${reverse} (расшифровка: ${text})`);
-                }
+                client.createMessage(message.channel.id, {
+                    embed: {
+                        description: `${reverse}`,
+                        author: {
+                            name: `${message.author.username}#${message.author.discriminator}`,
+                            icon_url: `${message.author.avatarURL}`
+                        },
+                        color: 7237340,
+                        footer: {
+                            text: "© 2020 m1t3nk0v",
+                            icon_url: "https://cdn.discordapp.com/attachments/496735656907636746/688425119797870762/m1t3nk0v_avatar.png"
+                        },
+                        fields: [
+                            {
+                                name: `**Расшифровка:**`,
+                                value: `||${text}||`,
+                            }]
+                    }
+                })
+                message.delete();
+                console.log(`${message.author.username}#${message.member.discriminator} сказал: ${reverse} (расшифровка: ${text})`);
             }
             break;
 
@@ -403,16 +419,32 @@ client.on("messageCreate", message => {
             if (args.length === 0) {
                 client.createMessage(message.channel.id, `***(звуки молчания)***`);
             }
-            if (message.author.id === "635445518553710593") {
-                client.createMessage(message.channel.id, `${message.author.mention} иди в жопу, шутишь плохо, прикрываешься скобочками, наверное, ещё еду с пола ешь`);
+            else {
+                const text = args.join(" ");
+                client.createMessage(message.channel.id, {
+                    embed: {
+                        description: `${text}`,
+                        author: {
+                            name: `${message.author.username}#${message.author.discriminator}`,
+                            icon_url: `${message.author.avatarURL}`
+                        },
+                        color: 7237340
+                    }
+                })
+                message.delete();
+                console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text}`);
+            }
+            break;
+
+        case "say2":
+            if (message.author.id !== "274551672301158402") {
+                client.createMessage(message.channel.id, `${message.author.mention} нихуя ты умный`);
             }
             else {
                 const text = args.join(" ");
                 client.createMessage(message.channel.id, `${text}`);
-                if (message.content === `m!say ${text}`) {
-                    message.delete();
-                    console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text}`);
-                }
+                message.delete();
+                console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text}`);
             }
             break;
 
