@@ -1,5 +1,6 @@
 const Eris = require("eris");
 const moment = require("moment");
+const canvas = require("canvas");
 const client = new Eris(process.env.token);
 const version = require("./package.json").version;
 const currentYear = moment().format('YYYY');
@@ -109,6 +110,45 @@ client.on("messageCreate", message => {
             });
             break;
             
+        case "demotivator":
+            const regExp = /"([^"]*)"/g;
+            const textArgs = args.join(" ").match(regExp);
+            if (!textArgs) {
+                client.createMessage(message.channel.id, `${message.author.mention} ты точно всё правильно делаешь? (спойлер: используй "кавычки")`);
+            }
+            (async function run() {
+                const topText = textArgs[0].replace(/^"|"$/g, '');
+                if (message.content === `${prefix}demotivator "${topText}"`) {
+                    client.createMessage(message.channel.id, `${message.author.mention} а нижний текст?`);
+                }
+                const bottomText = textArgs[1].replace(/^"|"$/g, '');
+                if (!message.attachments[0]) {
+                    client.createMessage(message.channel.id, `${message.author.mention} а картинка где?`);
+                }
+                else {
+                    client.createMessage(message.channel.id, `:ok_hand:`)
+                    let c = canvas.createCanvas(1000, 1000)
+                    let ctx = c.getContext("2d");
+                    let img = await canvas.loadImage(message.attachments[0].url);
+                    ctx.font = "108px Times New Roman";
+                    ctx.textAlign = "center";
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0, 0, 1000, 1000);
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(65, 40, 870, 745);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(68, 43, 864, 738);
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(75, 50, 850, 725);
+                    ctx.fillText(topText, 500, 890);
+                    ctx.font = "48px Times New Roman";
+                    ctx.fillText(bottomText, 500, 950);
+                    ctx.drawImage(img, 75, 50, 850, 725);
+                    client.createMessage(message.channel.id, "", { name: "demotivator.png", file: c.toBuffer("image/png") })
+                }
+            })();
+            break;
+            
         case "eval":
             if (message.author.id !== "274551672301158402") {
                 client.createMessage(message.channel.id, `${message.author.mention} тебе сюда нельзя`);
@@ -134,7 +174,7 @@ client.on("messageCreate", message => {
             client.createMessage(message.channel.id, {
                 embed: {
                     title: "СПИСОК КОМАНД",
-                    description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n`m!who <subject>` - система поиска человека\n\n**Список будет дополняться по мере появления новых команд.**",
+                    description: "`m!8ball <question>` - задать вопрос боту\n`m!avatar [user]` - аватарка пользователя\n`m!demotivator <topText> <bottomText> <image>` - создать демотиватор\n`m!hello` - передать привет боту\n`m!help` - список команд **(вы здесь)**\n`m!info` - узнать информацию о боте\n`m!invite` - добавить бота на свой сервер\n`m!kotletki` - местный !ping\n`m!rate <smth>` - дать оценку какому-либо предмету\n`m!reverse <text>` - отправить текст наоборот от имени бота\n`m!say <text>` - отправить текст от имени бота\n`m!server` - узнать информацию о сервере\n`m!user [user]` - узнать информацию о пользователе\n`m!who <subject>` - система поиска человека\n\n**Список будет дополняться по мере появления новых команд.**",
                     author: {
                         name: client.user.username,
                         icon_url: client.user.avatarURL
@@ -183,7 +223,7 @@ client.on("messageCreate", message => {
                         },
                         {
                           name: `**Используемые пакеты:**`,
-                          value: `**Node.js** ${process.version}\n**Eris** ${require("eris").VERSION}\n**Moment** ${moment.version}`
+                          value: `**Node.js** ${process.version}\n**Eris** ${require("eris").VERSION}\n**Moment** ${moment.version}\n**Canvas** ${canvas.version}`
                         }
                     ],
                     footer: {
@@ -442,6 +482,24 @@ client.on("messageCreate", message => {
                 client.createMessage(message.channel.id, `${text}`);
                 message.delete();
                 console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text}`);
+            }
+            break;
+
+        case "say3":
+            if (message.author.id !== "274551672301158402") {
+                client.createMessage(message.channel.id, `${message.author.mention} нихуя ты умный`);
+            }
+            else {
+                message.delete();
+                (async function run() {
+                    const text = args.join(" ");
+                    let img = await canvas.loadImage(message.attachments[0].url);
+                    let c = canvas.createCanvas(img.width, img.height)
+                    let ctx = c.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    client.createMessage(message.channel.id, `${text}`, { name: "unknown.png", file: c.toBuffer("image/png") });
+                    console.log(`${message.author.username}#${message.member.discriminator} сказал: ${text} [${message.attachments[0].url}]`);
+                })();
             }
             break;
 

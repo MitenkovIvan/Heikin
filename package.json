@@ -10,6 +10,7 @@
   "author": "m1t3nk0v",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.6.1",
     "dotenv": "^8.2.0",
     "eris": "^0.13.1",
     "moment": "^2.26.0"
