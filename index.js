@@ -126,7 +126,6 @@ client.on("messageCreate", message => {
                     client.createMessage(message.channel.id, `${message.author.mention} а картинка где?`);
                 }
                 else {
-                    client.createMessage(message.channel.id, `:ok_hand:`)
                     let c = canvas.createCanvas(1000, 1000)
                     let ctx = c.getContext("2d");
                     let img = await canvas.loadImage(message.attachments[0].url);
