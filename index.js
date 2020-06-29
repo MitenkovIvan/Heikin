@@ -7,6 +7,9 @@ const currentYear = moment().format('YYYY');
 const os = require("os");
 const prefix = "m!";
 
+client.options.defaultImageFormat = "png";
+client.options.defaultImageSize = "4096";
+
 client.on("ready", () => {
     moment.locale('ru');
     console.log("Есть пробитие!");
