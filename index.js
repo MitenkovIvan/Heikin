@@ -9,6 +9,7 @@ const prefix = "m!";
 
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
+canvas.registerFont('./.fonts/Times New Roman.ttf', { family: 'Times New Roman' });
 
 client.on("ready", () => {
     moment.locale('ru');
