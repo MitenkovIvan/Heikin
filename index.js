@@ -245,7 +245,7 @@ client.on("messageCreate", message => {
                 client.createMessage(message.channel.id, `${message.author.mention} а жопа не слипнется?)`);
             }
             else {
-            client.createMessage(message.channel.id, `**Ссылка на бота:** https://discordapp.com/oauth2/authorize?client_id=702412548347134022&scope=bot&permissions=8`);
+            client.createMessage(message.channel.id, `**Ссылка на бота:** https://discord.com/oauth2/authorize?client_id=702412548347134022&scope=bot&permissions=8`);
             }
             break;
 
