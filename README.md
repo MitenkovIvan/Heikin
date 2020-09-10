@@ -2,4 +2,4 @@
 Just your average Node.js/Eris Discord bot.
 
 ### Changelogs
-* [CHANGELOG_ru.md]Russian | [CHANGELOG_en.md]English
+* [Russian](CHANGELOG_ru.md) | [English](CHANGELOG_en.md)
