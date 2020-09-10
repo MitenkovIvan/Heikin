@@ -1,2 +1,5 @@
-# m1t3nk0v.b0t
-Just your average Node.js/Eris Discord bot. Currently in development.
+# Heikin
+Just your average Node.js/Eris Discord bot.
+
+### Changelogs
+* [CHANGELOG_ru.md]Russian | [CHANGELOG_en.md]English
