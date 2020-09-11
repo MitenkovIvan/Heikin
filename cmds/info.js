@@ -23,6 +23,11 @@ module.exports = {
                     inline: true
                 },
                 {
+                    name: `Версия:`,
+                    value: `${client.version}`,
+                    inline: true
+                },
+                {
                     name: `Время работы:`,
                     value: `${moment(client.uptime).format('LTS')}`,
                     inline: true

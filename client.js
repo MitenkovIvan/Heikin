@@ -6,6 +6,7 @@ const client = new Eris(process.env.token);
 const prefixes = ['h:', 'h!', 'hk!', 'heikin!'];
 const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
 
+client.version = `1.0.2 (2020-09-11)`
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
 
@@ -18,7 +19,7 @@ for (const file of cmds) {
 
 client.on("ready", () => {
     moment.locale('ru');
-    console.log("平均\nHEIKIN\n(average)\n\n1.0.1 (2020-09-11)\nby m1t3nk0v\n\nWelcome!");
+    console.log(`平均\nHEIKIN\n(average)\n\n${client.version}\nby m1t3nk0v\n\nWelcome!`);
     client.editStatus("dnd", {
         name: "h:help",
         type: 0

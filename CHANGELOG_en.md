@@ -1,3 +1,9 @@
+# 1.0.2 (2020-09-11)
+
+### What's new?
+* **info** now lists bot version
+
+
 # 1.0.1 (2020-09-11)
 
 ### What's new?
