@@ -18,7 +18,7 @@ for (const file of cmds) {
 
 client.on("ready", () => {
     moment.locale('ru');
-    console.log("平均\nHEIKIN\n(average)\n\n1.0 (2020-09-10)\nby m1t3nk0v\n\nWelcome!");
+    console.log("平均\nHEIKIN\n(average)\n\n1.0.1 (2020-09-11)\nby m1t3nk0v\n\nWelcome!");
     client.editStatus("dnd", {
         name: "h:help",
         type: 0

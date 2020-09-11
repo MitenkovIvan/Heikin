@@ -18,7 +18,9 @@ module.exports = {
             let evaled = eval(code);
             if (typeof evaled !== "string")
             evaled = require("util").inspect(evaled);
-            evaled = evaled.replace(/token.+/, `token: [Well, this is awkward. -_-]`);
+            evaled = evaled.replace(/token.+/, `[Well, this is awkward. -_-]`);
+            evaled = evaled.replace(client.token, `[Well, this is awkward. -_-]`);
+            evaled = evaled.replace(process.env.token, `[Well, this is awkward. -_-]`);
             if (evaled.length >= 2000) {
                 await client.createMessage(message.channel.id, "", { file: evaled, name: "result.txt" });
             }

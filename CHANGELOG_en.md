@@ -1,3 +1,10 @@
+# 1.0.1 (2020-09-11)
+
+### What's new?
+* **help** now lists available prefixes (there are 4 so far)
+* Added another layer of security for **eval**
+
+
 # 1.0 (2020-09-10)
 
 The bot was originally called **m1t3nk0v.b0t**, but it was recently rewritten, so the name and design were changed.

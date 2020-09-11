@@ -17,7 +17,13 @@ module.exports = {
                 footer: {
                     icon_url: client.user.avatarURL,
                     text: `Введите ${prefix}help [команда] для получения подробной информации о команде.\nHeikin © 2020 m1t3nk0v`
-                }
+                },
+                fields: [
+                    {
+                        name: `Доступные префиксы:`,
+                        value: `\`h:\`, \`h!\`, \`hk!\`, \`heikin!\``,
+                    }
+                ]
             };
             return message.channel.createMessage({embed});
         }
