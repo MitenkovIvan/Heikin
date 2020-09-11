@@ -31,11 +31,11 @@ module.exports = {
                 color: 9502975,
                 fields: [
                     {
-                        name: `**Вопрос:**`,
+                        name: `Вопрос:`,
                         value: `Кто ${subject}?`,
                     },
                     {
-                        name: `**Ответ:**`,
+                        name: `Ответ:`,
                         value: `${randomResponse}`,
                     }
                 ]

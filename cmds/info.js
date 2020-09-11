@@ -7,7 +7,8 @@ module.exports = {
     description: 'отображает информацию о боте',
     aliases: ['stats', 'about'],
     async execute(client, message, args, prefix) {
-        const devID = client.users.get(process.env.dev).id
+        const dev = client.users.get(process.env.dev)
+        const devTag = `${dev.username}#${dev.discriminator}`
         const invite = `https://discord.com/oauth2/authorize?client_id=702412548347134022&scope=bot&permissions=8`;
         const GitHub = `https://github.com/MitenkovIvan/Heikin`;
         const embed = {
@@ -19,7 +20,7 @@ module.exports = {
             fields: [
                 {
                     name: `Разработчик:`,
-                    value: `<@${devID}>`,
+                    value: `${devTag}`,
                     inline: true
                 },
                 {

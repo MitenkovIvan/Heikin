@@ -6,7 +6,7 @@ const client = new Eris(process.env.token);
 const prefixes = ['h:', 'h!', 'hk!', 'heikin!'];
 const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
 
-client.version = `1.0.2 (2020-09-11)`
+client.version = `1.0.3 (2020-09-11)`
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
 
@@ -42,7 +42,12 @@ client.on("messageCreate", message => {
             command.execute(client, message, args, prefix);
         } catch (err) {
             console.error(err);
-            message.channel.createMessage(`Что-то пошло не так.`);
+            embed = {
+                title: `:no_entry: Что-то пошло не так.`,
+                description: `\`\`\`js\n${err}\n\`\`\``,
+                color: 9502975,
+            };
+            message.channel.createMessage({embed});
         }
     }
 })

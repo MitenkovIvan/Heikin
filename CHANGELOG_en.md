@@ -1,7 +1,15 @@
+# 1.0.3 (2020-09-11)
+
+### What's new?
+* **info** now display owner's tag instead of ping
+* Formatting of **8ball**, **avatar**, **rate** and **who** was corrected
+* **demotivator** and **invert** now send 👌, which will be deleted upon completion
+
+
 # 1.0.2 (2020-09-11)
 
 ### What's new?
-* **info** now lists bot version
+* **info** now displays bot version
 
 
 # 1.0.1 (2020-09-11)

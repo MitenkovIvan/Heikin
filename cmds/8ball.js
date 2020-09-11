@@ -33,11 +33,11 @@ module.exports = {
                 color: 9502975,
                 fields: [
                     {
-                        name: `**Вопрос:**`,
+                        name: `Вопрос:`,
                         value: `${question}`,
                     },
                     {
-                        name: `**Ответ:**`,
+                        name: `Ответ:`,
                         value: `${answer}`,
                     }
                 ]

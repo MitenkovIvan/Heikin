@@ -37,6 +37,7 @@ module.exports = {
             await message.channel.createMessage({embed});
         }
         else {
+            const OK = await message.channel.createMessage(`:ok_hand:`);
             let c = canvas.createCanvas(1000, 1000)
             let ctx = c.getContext("2d");
             let img = await canvas.loadImage(message.attachments[0].url);
@@ -54,6 +55,7 @@ module.exports = {
             ctx.font = "36px arial";
             ctx.fillText(bottomText, 500, 960);
             ctx.drawImage(img, 75, 50, 850, 725);
+            OK.delete();
             client.createMessage(message.channel.id, "", { name: "demotivator.png", file: c.toBuffer("image/png") })
         }
     }

@@ -15,6 +15,7 @@ module.exports = {
             await message.channel.createMessage({embed});
         }
         else {
+            const OK = await message.channel.createMessage(`:ok_hand:`);
             let img = await canvas.loadImage(message.attachments[0].url);
             let c = canvas.createCanvas(img.width, img.height)
             let ctx = c.getContext("2d");
@@ -22,6 +23,7 @@ module.exports = {
             ctx.globalCompositeOperation='difference';
             ctx.fillStyle='white';
             ctx.fillRect(0, 0, img.width, img.height);
+            OK.delete();
             client.createMessage(message.channel.id, "", { name: "invert.png", file: c.toBuffer("image/png") })
         }
     }

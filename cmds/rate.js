@@ -143,11 +143,11 @@ module.exports = {
                 color: 9502975,
                 fields: [
                     {
-                        name: `**Предмет на оценку:**`,
+                        name: `Предмет на оценку:`,
                         value: `${subject}`,
                     },
                     {
-                        name: `**Оценка:**`,
+                        name: `Оценка:`,
                         value: `${rate}`,
                     }
                 ]
