@@ -6,9 +6,14 @@ const client = new Eris(process.env.token);
 const prefixes = ['h:', 'h!', 'hk!', 'heikin!'];
 const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
 
-client.version = `1.0.3 (2020-09-11)`
+client.version = `1.0.4 (2020-10-28)`
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
+client.ws = { intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS'] }
+
+for (const guild of client.guilds.values()) {
+    guild.fetchAllMembers();
+}
 
 client.commands = new Eris.Collection();
 const cmds = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));

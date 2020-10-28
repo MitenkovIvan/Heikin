@@ -23,29 +23,29 @@ module.exports = {
             color: 9502975,
             fields: [
                 {
-                    name: `**ID:**`,
+                    name: `ID:`,
                     value: member.id
                 },
                 {
-                    name: `**Никнейм:**`,
+                    name: `Никнейм:`,
                     value: member ? (member.nick ? member.nick : "N/A") : "N/A"
                 },
                 {
-                    name: `**Статус:**`,
+                    name: `Статус:`,
                     value: member.status,
                     inline: true
                 },
                 {
-                    name: `**Бот?**`,
+                    name: `Бот?`,
                     value: member.bot ? "Да" : "Нет",
                     inline: true
                 },
                 {
-                    name: `**Дата регистрации в Discord:**`,
+                    name: `Дата регистрации в Discord:`,
                     value: `${moment(member.createdAt).format('ll')}, ${moment(member.createdAt).format('LTS')}`
                 },
                 {
-                    name: `**Дата присоединения к серверу:**`,
+                    name: `Дата присоединения к серверу:`,
                     value: `${moment(member.joinedAt).format('ll')}, ${moment(member.joinedAt).format('LTS')}`
                 }
             ],

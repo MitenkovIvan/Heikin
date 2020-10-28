@@ -15,6 +15,7 @@ module.exports = {
     ],
     async execute(client, message, args, prefix) {
         const owner = message.channel.guild.members.get(message.channel.guild.ownerID);
+        const ownerTag = `${owner.username}#${owner.discriminator}`
         const embed = {
             author: {
                 name: message.channel.guild.name,
@@ -23,44 +24,39 @@ module.exports = {
             color: 9502975,
             fields: [
                 {
-                    name: `**ID:**`,
+                    name: `ID:`,
                     value: message.channel.guild.id,
                     inline: true
                 },
                 {
-                    name: `**Владелец сервера:**`,
-                    value: `${owner.mention}`,
+                    name: `Владелец сервера:`,
+                    value: `${ownerTag}`,
                     inline: true
                 },
                 {
-                    name: `**Регион сервера:**`,
+                    name: `Регион сервера:`,
                     value: message.channel.guild.region,
                     inline: true
                 },
                 {
-                    name: `**Уровень проверки:**`,
+                    name: `Уровень проверки:`,
                     value: this.verificationLevel[message.channel.guild.verificationLevel],
                     inline: true
                 },
                 {
-                    name: `**Дата создания:**`,
+                    name: `Дата создания:`,
                     value: `${moment(message.channel.guild.createdAt).format('ll')}, ${moment(message.channel.guild.createdAt).format('LTS')}`,
                     inline: true
                 },
                 {
-                    name: `**Ролей:**`,
-                    value: message.channel.guild.roles.size,
-                    inline: true
-                },
-                {
-                    name: `**Каналов:**`,
+                    name: `Каналов:`,
                     value: `Всего: ${message.channel.guild.channels.size}\n`
                     + `Текстовых: ${message.channel.guild.channels.filter(c => c instanceof TextChannel).length}\n`
                     + `Голосовых: ${message.channel.guild.channels.filter(c => c instanceof VoiceChannel).length}\n`
                     + `Категорий: ${message.channel.guild.channels.filter(c => c instanceof CategoryChannel).length}\n`,
                 },
                 {
-                    name: `**Пользователей:**`,
+                    name: `Пользователей:`,
                     value: `Всего: ${message.channel.guild.memberCount}\n`
                     + `В сети: ${message.channel.guild.members.filter(m => m.status === "online").length}\n`
                     + `Не активны: ${message.channel.guild.members.filter(m => m.status === "idle").length}\n`
