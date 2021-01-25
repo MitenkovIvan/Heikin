@@ -1,6 +1,7 @@
 module.exports = {
     name: 'ping',
     description: 'проверяет пинг бота',
+    aliases: ['p'],
     async execute(client, message, args, prefix) {
         const pingCheck = await message.channel.createMessage(`:ping_pong: *Проверка...*`);
         const botLatency = pingCheck.timestamp - message.timestamp;
@@ -13,7 +14,7 @@ module.exports = {
             color: 9502975,
             footer: {
                 icon_url: client.user.avatarURL,
-                text: "Heikin © 2020 m1t3nk0v"
+                text: `Heikin © 2020-${client.currentYear} m1t3nk0v`
             }
         }
         await pingCheck.edit({content: "", embed});

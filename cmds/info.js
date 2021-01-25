@@ -5,7 +5,7 @@ const os = require("os");
 module.exports = {
     name: 'info',
     description: 'отображает информацию о боте',
-    aliases: ['stats', 'about'],
+    aliases: ['stats', 'about', 'i'],
     async execute(client, message, args, prefix) {
         const dev = client.users.get(process.env.dev)
         const devTag = `${dev.username}#${dev.discriminator}`
@@ -13,8 +13,7 @@ module.exports = {
         const GitHub = `https://github.com/MitenkovIvan/Heikin`;
         const embed = {
             author: {
-                name: client.user.username,
-                icon_url: client.user.avatarURL
+                name: client.user.username
             },
             color: 9502975,
             fields: [
@@ -61,7 +60,7 @@ module.exports = {
                 }
             ],
             footer: {
-                text: "© 2020 m1t3nk0v"
+                text: `© 2020-${client.currentYear} m1t3nk0v`
             },
             thumbnail: {
                 url: client.user.avatarURL

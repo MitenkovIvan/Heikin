@@ -1,6 +1,7 @@
 module.exports = {
     name: 'reload',
     description: 'перезагружает команду',
+    aliases: ['rel'],
     hidden: true,
     async execute(client, message, args, prefix) {
         const { commands } = client;

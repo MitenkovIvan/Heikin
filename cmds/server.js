@@ -4,7 +4,7 @@ const moment = require("moment");
 module.exports = {
     name: 'server',
     description: 'отображает информацию о сервере',
-    aliases: ['srv', 'srvinfo', 'srvstat'],
+    aliases: ['srv', 'srvinfo', 'srvstat', 's'],
     guildOnly: true,
     verificationLevel: [
         "Отсутствует",
@@ -18,8 +18,7 @@ module.exports = {
         const ownerTag = `${owner.username}#${owner.discriminator}`
         const embed = {
             author: {
-                name: message.channel.guild.name,
-                icon_url: message.channel.guild.iconURL
+                name: message.channel.guild.name
             },
             color: 9502975,
             fields: [
@@ -67,7 +66,7 @@ module.exports = {
             ],
             footer: {
                 icon_url: client.user.avatarURL,
-                text: "Heikin © 2020 m1t3nk0v"
+                text: `Heikin © 2020-${client.currentYear} m1t3nk0v`
             },
             thumbnail: {
                 url: message.channel.guild.iconURL

@@ -1,7 +1,7 @@
 module.exports = {
     name: 'reverse',
     description: 'отправляет эмбед с реверсом вашего текста',
-    aliases: ['yas', 'debme', 'ohce'],
+    aliases: ['yas', 'debme', 'ohce', 'rev'],
     usage: `<текст>`,
     async execute(client, message, args, prefix) {
         if (args.length === 0) {

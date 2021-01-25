@@ -1,3 +1,16 @@
+# 1.1 (2021-01-25)
+
+Let's start the new year with a major update!
+
+### What's new?
+* **demotivator** and **invert** now support image URLs (!)
+* **demotivator** no longer crops long text
+* **avatar** and **user** now support search by nickname, username, discriminator or tag
+* New argument **-w** for **demotivator** to make a white demotivator *(racism is no more)*
+* New **rate** lines *(special thanks to SviridovPOE)*
+* **user** now shows user roles, as long as user has any
+
+
 # 1.0.4 (2020-10-28)
 
 A little fix due to Discord Gateway update. Nothing interesting.

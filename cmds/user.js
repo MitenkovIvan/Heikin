@@ -3,59 +3,76 @@ const moment = require("moment");
 module.exports = {
     name: 'user',
     description: 'отображает информацию о пользователе',
-    aliases: ['userinfo'],
+    aliases: ['userinfo', 'u'],
     usage: `[@ или ID пользователя]`,
     guildOnly: true,
     async execute(client, message, args, prefix) {
+        let embed;
         let userID = args.join(" ");
-        if (!userID) member = message.member;
-        else member = message.channel.guild.members.get(message.mentions.length ? message.mentions[0].id : "") ||
-        message.channel.guild.members.find(m => m.id === userID || m.username.toLowerCase() === userID.toLowerCase() || m.tag === userID) ||
-        client.users.find(u => u.id === userID || u.tag === userID);
-        if (!member) {
-            return message.channel.createMessage(`Пользователь не найден.`);
-        }
-        const embed = {
-            author: {
-                name: `${member.username}#${member.discriminator}`,
-                icon_url: member.avatarURL
-            },
-            color: 9502975,
-            fields: [
-                {
-                    name: `ID:`,
-                    value: member.id
+        const tag = `${userID.username}#${userID.discriminator}`;
+        let user;
+        if (!userID) user = message.member;
+        else user = message.channel.guild.members.get(message.mentions.length ? message.mentions[0].id : "") ||
+        message.channel.guild.members.find(m => m.username.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.tag && m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase())) ||
+        client.users.find(u => u.id === userID || u.username === userID ||
+        u.discriminator === userID || u.tag === userID) || client.users.get(userID);
+
+        if (!user) {
+            embed = {
+                title: `:warning: Пользователь не обнаружен.`,
+                description: `Введите \`${prefix}help user\` для получения инструкции по использованию этой команды.`,
+                color: 9502975,
+            };
+            await message.channel.createMessage({embed});
+            return;
+        } else {
+            embed = {
+                author: {
+                    name: `${user.username}#${user.discriminator}`
                 },
-                {
-                    name: `Никнейм:`,
-                    value: member ? (member.nick ? member.nick : "N/A") : "N/A"
+                color: 9502975,
+                fields: [
+                    {
+                        name: `ID:`,
+                        value: user.id
+                    },
+                    {
+                        name: `Никнейм:`,
+                        value: user ? (user.nick ? user.nick : "N/A") : "N/A"
+                    },
+                    {
+                        name: `Бот?`,
+                        value: user.bot ? "Да" : "Нет"
+                    }
+                ],
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: `Heikin © 2020-${client.currentYear} m1t3nk0v`
                 },
-                {
-                    name: `Статус:`,
-                    value: member.status,
-                    inline: true
-                },
-                {
-                    name: `Бот?`,
-                    value: member.bot ? "Да" : "Нет",
-                    inline: true
-                },
-                {
-                    name: `Дата регистрации в Discord:`,
-                    value: `${moment(member.createdAt).format('ll')}, ${moment(member.createdAt).format('LTS')}`
-                },
-                {
-                    name: `Дата присоединения к серверу:`,
-                    value: `${moment(member.joinedAt).format('ll')}, ${moment(member.joinedAt).format('LTS')}`
+                thumbnail: {
+                    url: user.avatarURL
                 }
-            ],
-            footer: {
-                icon_url: client.user.avatarURL,
-                text: "Heikin © 2020 m1t3nk0v"
-            },
-            thumbnail: {
-                url: member.avatarURL
             }
+            if (user.status && user.status.length)
+            embed.fields.push({
+                name: `Статус:`,
+                value: user.status
+            });
+            embed.fields.push({
+                name: `Дата регистрации в Discord:`,
+                value: `${moment(user.createdAt).format('ll')}, ${moment(user.createdAt).format('LTS')}`
+            });
+            embed.fields.push({
+                name: `Дата присоединения к серверу:`,
+                value: `${moment(user.joinedAt).format('ll')}, ${moment(user.joinedAt).format('LTS')}`
+            });
+            if (user.roles && user.roles.length)
+            embed.fields.push({
+                name: `Роли:`,
+                value: user.roleObjects.sort((a, b) => b.position - a.position).map(r => r.mention).join(", ")
+            });
         }
         await message.channel.createMessage({embed});
     }

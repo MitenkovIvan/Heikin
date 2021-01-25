@@ -16,7 +16,7 @@ module.exports = {
                 color: 9502975,
                 footer: {
                     icon_url: client.user.avatarURL,
-                    text: `Введите ${prefix}help [команда] для получения подробной информации о команде.\nHeikin © 2020 m1t3nk0v`
+                    text: `Введите ${prefix}help [команда] для получения подробной информации о команде.\nHeikin © 2020-${client.currentYear} m1t3nk0v`
                 },
                 fields: [
                     {
@@ -51,7 +51,7 @@ module.exports = {
             ],
             footer: {
                 icon_url: client.user.avatarURL,
-                text: "Heikin © 2020 m1t3nk0v"
+                text: `Heikin © 2020-${client.currentYear} m1t3nk0v`
             }
         };
         if (command.aliases) {
