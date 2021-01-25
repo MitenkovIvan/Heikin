@@ -12,10 +12,7 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "dotenv": "^8.2.0",
-    "eris": "^0.14.0",
-    "eris-additions": "^1.4.1",
-    "ini": "^2.0.0",
-    "moment": "^2.29.1",
-    "node-fetch": "^2.6.1"
+    "eris": "^0.13.3",
+    "moment": "^2.27.0"
   }
 }
