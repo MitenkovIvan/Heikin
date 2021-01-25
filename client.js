@@ -1,15 +1,16 @@
 require("dotenv").config();
-const Eris = require("eris");
+const Eris = require("eris-additions")(require("eris"));
 const moment = require("moment");
 const fs = require("fs");
 const client = new Eris(process.env.token);
 const prefixes = ['h:', 'h!', 'hk!', 'heikin!'];
 const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
 
-client.version = `1.0.4 (2020-10-28)`
+client.version = `1.1 (2021-01-25)`
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
-client.ws = { intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS'] }
+client.currentYear = moment().format('YYYY');
+client.ws = { intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS'] };
 
 for (const guild of client.guilds.values()) {
     guild.fetchAllMembers();
@@ -26,7 +27,7 @@ client.on("ready", () => {
     moment.locale('ru');
     console.log(`平均\nHEIKIN\n(average)\n\n${client.version}\nby m1t3nk0v\n\nWelcome!`);
     client.editStatus("dnd", {
-        name: "h:help",
+        name: `h:help || ${client.version}`,
         type: 0
     })
 })
