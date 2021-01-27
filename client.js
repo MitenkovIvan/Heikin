@@ -6,7 +6,7 @@ const client = new Eris(process.env.token);
 const prefixes = ['h:', 'h!', 'hk!', 'heikin!'];
 const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
 
-client.version = `1.1 (2021-01-25)`
+client.version = `1.1.1 (2021-01-27)`
 client.options.defaultImageFormat = "png";
 client.options.defaultImageSize = "4096";
 client.currentYear = moment().format('YYYY');

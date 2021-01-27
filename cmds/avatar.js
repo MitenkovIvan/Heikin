@@ -24,6 +24,7 @@ module.exports = {
             else user = message.channel.guild.members.get(message.mentions.length ? message.mentions[0].id : "") ||
             message.channel.guild.members.find(m => m.username.toLowerCase().startsWith(userID.toLowerCase()) ||
             m.tag && m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
+            m.id && m.id.toLowerCase().startsWith(userID.toLowerCase()) ||
             m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase())) ||
             client.users.find(u => u.id === userID || u.username === userID ||
             u.discriminator === userID || u.tag === userID) || client.users.get(userID);
