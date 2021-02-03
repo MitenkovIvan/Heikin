@@ -14,6 +14,7 @@ module.exports = {
         if (!userID) user = message.member;
         else user = message.channel.guild.members.get(message.mentions.length ? message.mentions[0].id : "") ||
         message.channel.guild.members.find(m => m.username.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.discriminator && m.discriminator.toLowerCase().startsWith(userID.toLowerCase()) ||
         m.tag && m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
         m.id && m.id.toLowerCase().startsWith(userID.toLowerCase()) ||
         m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase())) ||
@@ -38,14 +39,6 @@ module.exports = {
                     {
                         name: `ID:`,
                         value: user.id
-                    },
-                    {
-                        name: `Никнейм:`,
-                        value: user ? (user.nick ? user.nick : "N/A") : "N/A"
-                    },
-                    {
-                        name: `Бот?`,
-                        value: user.bot ? "Да" : "Нет"
                     }
                 ],
                 footer: {
@@ -56,6 +49,15 @@ module.exports = {
                     url: user.avatarURL
                 }
             }
+            if (user.nick)
+            embed.fields.push({
+                name: `Никнейм:`,
+                value: user ? (user.nick ? user.nick : "N/A") : "N/A"
+            });
+            embed.fields.push({
+                name: `Бот?`,
+                value: user.bot ? "Да" : "Нет"
+            });
             if (user.status && user.status.length)
             embed.fields.push({
                 name: `Статус:`,
@@ -65,6 +67,7 @@ module.exports = {
                 name: `Дата регистрации в Discord:`,
                 value: `${moment(user.createdAt).format('ll')}, ${moment(user.createdAt).format('LTS')}`
             });
+            if (user.joinedAt)
             embed.fields.push({
                 name: `Дата присоединения к серверу:`,
                 value: `${moment(user.joinedAt).format('ll')}, ${moment(user.joinedAt).format('LTS')}`

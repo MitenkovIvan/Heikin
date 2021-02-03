@@ -23,6 +23,7 @@ module.exports = {
             if (!userID) user = message.member;
             else user = message.channel.guild.members.get(message.mentions.length ? message.mentions[0].id : "") ||
             message.channel.guild.members.find(m => m.username.toLowerCase().startsWith(userID.toLowerCase()) ||
+            m.discriminator && m.discriminator.toLowerCase().startsWith(userID.toLowerCase()) ||
             m.tag && m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
             m.id && m.id.toLowerCase().startsWith(userID.toLowerCase()) ||
             m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase())) ||

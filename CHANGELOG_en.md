@@ -1,3 +1,8 @@
+# 1.1.2 (2021-02-03)
+
+A hotfix that fixes **user**'s incorrect server join date, if search by discriminator is used.
+
+
 # 1.1.1 (2021-01-27)
 
 A hotfix that fixes **user**'s incorrect server join date, if search by ID is used.
