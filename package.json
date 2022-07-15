@@ -16,6 +16,6 @@
     "eris-additions": "^1.4.1",
     "ini": "^2.0.0",
     "moment": "^2.29.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   }
 }
